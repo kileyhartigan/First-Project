@@ -32,3 +32,6 @@ dataset = pandas.read_csv(url, names=names)
 # shape of the dataset
 print(dataset.shape)
 --> (150,5)
+
+# look at the first twenty rows of the data
+print(dataset.head(20))
