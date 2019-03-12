@@ -82,3 +82,9 @@ validation_size = 0.20
 seed = 7
 X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
 
+#use 10-fold cross validation to estimate accuracy, splitting dataset into ten parts, train on nine of them, and test onf one. 
+#repeat for all combinations of train-test splits
+#uses the metric of 'accuracy' to evaluate models. This is a ratio of the number of correctly predicted 
+instances divided by the total number of instances in the dataset multiplied by 100 to give a percentage.
+seed = 7
+scoring = 'accuracy'
