@@ -117,3 +117,39 @@ for name, model in models:
 	names.append(name)
 	msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
 	print(msg)
+--> LR: 0.966667 (0.040825)
+--> LDA: 0.975000 (0.038188)
+--> KNN: 0.983333 (0.033333)
+--> CART: 0.975000 (0.038188)
+--> NB: 0.975000 (0.053359)
+--> SVM: 0.991667 (0.025000)
+
+#Select the Best Model
+#SVM has the largest estimated accuracy score (from the results above)
+#create a plot of the model evaluation results and compare the spread and the mean
+accuracy of each model. There is a population of accuracy measures for each algortithm because each 
+algorithm was evaluated 10 times (10 fold cross validation). 
+
+# Compare Algorithms
+fig = plt.figure()
+fig.suptitle('Algorithm Comparison')
+ax = fig.add_subplot(111)
+plt.boxplot(results)
+ax.set_xticklabels(names)
+plt.show()
+#This shows box and whisker plots that are squashed at the top of the range, with many samples
+achieving 100% accuracy
+
+#Make Predictions
+#test the KNN algortithm on your validation set, summarize the results as a final accuracy score, a confusion matrix, and a classification report
+
+# Make predictions on validation dataset
+knn = KNeighborsClassifier()
+knn.fit(X_train, Y_train)
+predictions = knn.predict(X_validation)
+print(accuracy_score(Y_validation, predictions))
+print(confusion_matrix(Y_validation, predictions))
+print(classification_report(Y_validation, predictions))
+
+#Accuracy with the KNN on the validation set is 90%. Nice. The confusion matrix provides an indication
+of the three errors made. Finally, the classification reprot provides a breakdown of each class by precision, recall, f1-score and support showing excellent results. 
